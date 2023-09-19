@@ -1,0 +1,26 @@
+from google_play_billing import get_purchases, purchase_product
+from kivy.app import App
+from kivy.uix.button import Button
+from kivy.uix.boxlayout import BoxLayout
+
+class MyApp(App):
+    def build(self):
+        layout = BoxLayout(orientation='vertical')
+        purchases = get_purchases()
+
+        if 'myapp.subscription' in purchases:
+            # User has an active subscription, show premium content
+            layout.add_widget(Button(text='Premium content'))
+        else:
+            # User does not have a subscription, show the purchase button
+            purchase_button = Button(text='Purchase subscription')
+            purchase_button.bind(on_press=self.purchase_subscription)
+            layout.add_widget(purchase_button)
+
+        return layout
+
+    def purchase_subscription(self, instance):
+        # Initiate the subscription purchase flow
+        purchase_product('myapp.subscription', 'subs')
+
+MyApp().run()
