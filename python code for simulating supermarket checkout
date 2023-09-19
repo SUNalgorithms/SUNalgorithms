@@ -1,0 +1,36 @@
+class Product:
+    def __init__(self, name, price):
+        self.name = name
+        self.price = price
+
+class Supermarket:
+    def __init__(self):
+        self.products = {}
+        self.cart = {}
+
+    def add_product(self, product, quantity):
+        self.products[product.name] = {"product": product, "quantity": quantity}
+
+    def add_to_cart(self, product_name, quantity):
+        if product_name in self.products and self.products[product_name]["quantity"] >= quantity:
+            self.products[product_name]["quantity"] -= quantity
+            if product_name in self.cart:
+                self.cart[product_name]["quantity"] += quantity
+            else:
+                self.cart[product_name] = {"product": self.products[product_name]["product"], "quantity": quantity}
+        else:
+            print("Sorry, we don't have enough stock for that product.")
+
+    def checkout(self):
+        total = 0
+        for item in self.cart.values():
+            total += item["product"].price * item["quantity"]
+        print(f"Total: ${total:.2f}")
+        self.cart = {}
+
+# Example usage
+supermarket = Supermarket()
+apple = Product("Apple", 0.5)
+supermarket.add_product(apple, 100)
+supermarket.add_to_cart("Apple", 5)
+supermarket.checkout()
