@@ -1,0 +1,13 @@
+from kivmob import KivMob
+
+# Initialize KivMob with your AdMob app ID.
+ads = KivMob(YOUR_APP_ID)
+
+# Create a new banner ad.
+ads.new_banner("ca-app-pub-3940256099942544~3347511713", top_pos=True)
+
+# Request a banner ad from AdMob.
+ads.request_banner()
+
+# Display the banner ad.
+ads.show_banner()
