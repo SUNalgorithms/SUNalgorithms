@@ -1,0 +1,28 @@
+from kivy.lang import Builder
+from kivymd.app import MDApp
+
+KV = '''
+BoxLayout:
+    orientation: 'vertical'
+
+    MDToolbar:
+        title: "KivyMD App"
+        left_action_items: [["menu", lambda x: print("Menu button pressed")]]
+        right_action_items: [["dots-vertical", lambda x: print("More button pressed")]]
+        elevation: 10
+
+    MDLabel:
+        text: "Hello, World!"
+        halign: "center"
+
+    MDRaisedButton:
+        text: "Press me"
+        pos_hint: {"center_x": 0.5}
+        on_release: print("Button pressed")
+'''
+
+class MainApp(MDApp):
+    def build(self):
+        return Builder.load_string(KV)
+
+MainApp().run()
