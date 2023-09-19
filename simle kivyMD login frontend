@@ -1,0 +1,35 @@
+from kivy.lang import Builder
+from kivymd.app import MDApp
+
+KV = '''
+Screen:
+
+    MDTextField:
+        hint_text: "Enter username"
+        pos_hint: {"center_x": 0.5, "center_y": 0.6}
+        size_hint_x: None
+        width: 300
+
+    MDTextField:
+        hint_text: "Enter password"
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        size_hint_x: None
+        width: 300
+        password: True
+
+    MDRaisedButton:
+        text: "LOGIN"
+        pos_hint: {"center_x": 0.5, "center_y": 0.4}
+        size_hint_x: None
+        width: 100
+        on_release: app.login()
+'''
+
+class MainApp(MDApp):
+    def build(self):
+        return Builder.load_string(KV)
+
+    def login(self):
+        print("Logging in...")
+
+MainApp().run()
