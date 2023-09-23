@@ -1,5 +1,5 @@
 - hello I’m @SUNalgorithms
-im a python programmer, who knows Django, kivy, kivymd, HTML,CSS and i also know C++.
+im a python programmer, who knows Django, kivymd,tikinter,HTML,CSS and i also know C++.
 im currently learning javaScript.
 
 <!---
