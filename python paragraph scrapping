@@ -1,0 +1,28 @@
+import requests
+from bs4 import BeautifulSoup
+
+def web_scraper(url, word):
+    # Send a GET request to the webpage
+    response = requests.get(url)
+
+    # If the GET request is successful, the status code will be 200
+    if response.status_code == 200:
+        # Get the content of the response
+        page_content = response.content
+
+        # Create a BeautifulSoup object and specify the parser
+        soup = BeautifulSoup(page_content, 'html.parser')
+
+        # Get the text of the webpage
+        text = soup.get_text()
+
+        # Find the occurrences of the word
+        word_count = text.lower().count(word.lower())
+
+        return word_count
+
+# Use the function
+url = "https://www.example.com"  # replace with your url
+word = "example"  # replace with your word
+print(f"The word '{word}' was found {web_scraper(url, word)} times on the webpage.")
+# for this app you need to install the following pip install requests beautifulsoup4
