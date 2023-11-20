@@ -1,0 +1,26 @@
+import requests
+from bs4 import BeautifulSoup
+
+def simple_web_scraper(url):
+    # Send a GET request to the webpage
+    response = requests.get(url)
+
+    # If the GET request is successful, the status code will be 200
+    if response.status_code == 200:
+        # Get the content of the response
+        page_content = response.content
+
+        # Create a BeautifulSoup object and specify the parser
+        soup = BeautifulSoup(page_content, 'html.parser')
+
+        # Find all the <p> tags on the webpage
+        p_tags = soup.find_all('p')
+
+        # Extract the text from the <p> tags
+        p_tags_text = [tag.get_text() for tag in p_tags]
+
+        return p_tags_text
+
+# Use the function
+url = "https://www.example.com"  # replace with your url
+print(simple_web_scraper(url))
