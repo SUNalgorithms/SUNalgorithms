@@ -1,0 +1,14 @@
+from selenium import webdriver
+
+# Initialize the Chrome WebDriver
+driver = webdriver.Chrome(r'C:\Users\drivers\chromedriver.exe')
+
+# Navigate to a web page (replace the URL with your desired page)
+driver.get("https://www.selenium.dev/selenium/web/web-form.html")
+
+# Perform some actions (you can customize these steps)
+text_box = driver.find_element_by_name("my-text")
+text_box.send_keys("Selenium")
+
+# Close the browser
+driver.quit()
